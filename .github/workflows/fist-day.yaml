@@ -1,1 +1,24 @@
+name: CICD workflow 
+
+on:
+ push:
+  branches:
+    - main
+ pull_request:
+   branches:
+   - main   
+   workflow_dispatch:
+jobs:
+  job-name:
+  run-on: ubuntu-latest
+
+  steps:
+  -name: git cheakout
+  users: action cheakout
+  -name: teraform init
+  users: "teraform init"
+  -name: terraform plan
+  users: "teraform plan"
+  -name: teraform apply
+  users: "teraform apply"
 
