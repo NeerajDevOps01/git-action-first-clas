@@ -9,16 +9,31 @@ on:
    - main   
    workflow_dispatch:
 jobs:
-  job-name:
-  run-on: ubuntu-latest
-
+  job-name: Terraform deploy
+  runs-on: ubuntu-latest
+  
+  env:
+    AWS_ACCESS_KEY_ID:  ${{}}
+    AWS_SECRET_KEY_ID:  ${{}}
+    AWS_DEFAULT_REGION:  us-west-2
+  
+  
   steps:
-  -name: git cheakout
+  - name: git cheakout
   users: action cheakout
-  -name: teraform init
-  users: "teraform init"
+
+  -name: setup terraform
+  users:  hashicorp/setup-terraform@v3 
+
+  -name: Terraform Init
+  users: "terraform init"
+
+  -name: terraform validate
+  users: "terraform validate" 
+
   -name: terraform plan
-  users: "teraform plan"
-  -name: teraform apply
-  users: "teraform apply"
+  users: "terraform plan"
+
+  -name: terraform apply
+  users: "terraform apply"
 
